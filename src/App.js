@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Button from "../src/components/button/Button";
+import ButtonDigit from "./components/button/ButtonDigit";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <input type="text" />
+        <div className="pad">
+            <ButtonDigit>1</ButtonDigit>
+            <ButtonDigit>2</ButtonDigit>
+            <ButtonDigit>3</ButtonDigit>
+            <Button>+</Button>
+            <ButtonDigit>4</ButtonDigit>
+            <ButtonDigit>5</ButtonDigit>
+            <ButtonDigit>6</ButtonDigit>
+            <Button>-</Button>
+            <ButtonDigit>7</ButtonDigit>
+            <ButtonDigit>8</ButtonDigit>
+            <ButtonDigit>9</ButtonDigit>
+            <Button>*</Button>
+            <Button>+/-</Button>
+            <ButtonDigit>0</ButtonDigit>
+            <Button>.</Button>
+            <Button>=</Button>
+        </div>
+      </div>
     </div>
   );
 }
