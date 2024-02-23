@@ -3,8 +3,11 @@ import Button from './Button'
 import classes from './Button.module.css'
 
 const ButtonDigit = ({children, ...props}) => {
+
+  const componentClasses = [classes.button, classes.button__blue].join(' ');
+
   return (
-    <Button {...props} className={classes.blue}>{ children }</Button>
+    <Button {...props} className={componentClasses}>{ children }</Button>
   )
 }
 

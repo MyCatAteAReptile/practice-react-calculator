@@ -56,10 +56,14 @@
     padding-bottom: .5em;
 }
 
-.blue {
+.button__blue {
     background-color: #6fc6ff;
 }
 
-.red {
+.button__red {
     background-color: #ff6c6f;
+}
+
+.button__double {
+    grid-column: 1 / span 2;
 }
