@@ -9,8 +9,10 @@ function App() {
   const isMath = (string) => {
     const matchedCharArray = string.match("[-.=+*/0-9/s]{1,}");
     console.log(matchedCharArray);
-    return matchedCharArray.length === string.length;
+    return matchedCharArray[0].length === string.length;
   };
+
+  const isFormulaCompleted = (string) => string.slice(-1) === "=";
 
   const clear = () => {
     setFormula("");
@@ -18,20 +20,34 @@ function App() {
   };
 
   const processDigit = (number) => {
-    if (output === "0") {
-      setOutput(number);
+    if (!isFormulaCompleted(formula)) {
+      if (output === "0") {
+        setOutput(number);
+      } else {
+        setOutput(output + number);
+      }
     } else {
-      setOutput(output + number);
+      setFormula("");
+      setOutput(number);
     }
   };
 
   const processDecimal = (divider) => {
-    setOutput(output + divider);
+    if (!isFormulaCompleted(formula)) {
+      setOutput(output + divider);
+    } else {
+      setFormula("");
+      setOutput("0.");
+    }
   };
 
   const processOperation = (operation) => {
-    setFormula(formula + output + operation);
-    setOutput("0");
+    if (!isFormulaCompleted(formula)) {
+      setFormula(formula + output + operation);
+      setOutput("0");
+    } else {
+      clear();
+    }
   };
 
   const processFormula = () => {
