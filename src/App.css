@@ -1,5 +1,5 @@
 .App {
-  background-color: grey;
+  background-color: #f0f0f0;
   height: 100vh;
   font-size: 14px;
   position: relative;
@@ -38,7 +38,7 @@
   word-wrap: break-word;
   width: 320px;
   min-height: 32px;
-  padding: 0 4px;
+  padding: 0 4px 6px 4px;
   border: none;
   user-select: none;
   cursor: default;
@@ -50,4 +50,5 @@
 .display__formula {
   background-color: #000000;
   color: orange;
+  padding: 6px 4px 0 4px;
 }

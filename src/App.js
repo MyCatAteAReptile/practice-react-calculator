@@ -44,7 +44,7 @@ function App() {
 
   const processOperation = (operation) => {
     if (!isFormulaCompleted(formula)) {
-      setFormula(formula + output + operation);
+      setFormula(formula + (output.slice(-1) === '.' ? output.slice(0, -1) : output) + operation);
       setOutput("0");
     } else {
       clear();
@@ -52,12 +52,12 @@ function App() {
   };
 
   const processFormula = () => {
-    const resultFormula = formula + output;
+    const resultFormula = formula + (output.slice(-1) === '.' ? output.slice(0, -1) : output);
 
     if (!isFormulaCompleted(formula)) {
       if (isMath(resultFormula)) {
         setFormula(resultFormula + "=");
-        setOutput(eval(resultFormula));
+        setOutput(eval(resultFormula).toString());
       }
     }
   };
