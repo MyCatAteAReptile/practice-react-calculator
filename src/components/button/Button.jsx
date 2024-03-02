@@ -1,9 +1,12 @@
 import React from 'react'
 import classes from './Button.module.css'
 
-const Button = ({ children, ...props}) => {
+const Button = ({ children, styleClassesArray, ...props}) => {
+
+  const classNameArray = ['button', ...styleClassesArray].map((e) => classes[e]);
+
   return (
-    <button {...props} className={ classes.button }>{ children }</button>
+    <button {...props} className={ classNameArray.join(' ') }>{ children }</button>
   )
 }
 

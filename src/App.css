@@ -1,7 +1,7 @@
 .App {
   background-color: #f0f0f0;
   height: 100vh;
-  font-size: 14px;
+  font-size: 18px;
   position: relative;
 }
 
@@ -16,9 +16,9 @@
   border: 2px solid black;
   border-radius: 10px;
   background-color: #394053;
-} 
+}
 
-.App .pad {
+.App .keypad {
   width: 320px;
   height: 320px;
   margin-right: auto;
@@ -27,28 +27,4 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
-}
-
-.display {
-  font-family: 'Calculator', 'Arial', sans-serif;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 32px;
-  word-wrap: break-word;
-  width: 320px;
-  min-height: 32px;
-  padding: 0 4px 6px 4px;
-  border: none;
-  user-select: none;
-  cursor: default;
-  background-color: #000000;
-  color: white;
-  text-align: end;
-}
-
-.display__formula {
-  background-color: #000000;
-  color: orange;
-  padding: 6px 4px 0 4px;
 }
