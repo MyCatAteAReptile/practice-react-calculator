@@ -8,7 +8,6 @@ function App() {
 
   const isMath = (string) => {
     const matchedCharArray = string.match("[-.=+*/0-9/s]{1,}");
-    console.log(matchedCharArray);
     return matchedCharArray[0].length === string.length;
   };
 
@@ -34,7 +33,9 @@ function App() {
 
   const processDecimal = (divider) => {
     if (!isFormulaCompleted(formula)) {
-      setOutput(output + divider);
+      if (output.indexOf('.') === -1) {
+        setOutput(output + divider);
+      }
     } else {
       setFormula("");
       setOutput("0.");
@@ -52,12 +53,12 @@ function App() {
 
   const processFormula = () => {
     const resultFormula = formula + output;
-    console.log(resultFormula);
 
-    if (isMath(resultFormula)) {
-      console.log("2");
-      setFormula(resultFormula + "=");
-      setOutput(eval(resultFormula));
+    if (!isFormulaCompleted(formula)) {
+      if (isMath(resultFormula)) {
+        setFormula(resultFormula + "=");
+        setOutput(eval(resultFormula));
+      }
     }
   };
 

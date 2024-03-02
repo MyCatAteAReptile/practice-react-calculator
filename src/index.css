@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Calculator";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("./fonts/Calculator.woff2") format("woff2"),
+}
