@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../button/Button";
+import classes from "./Keypad.module.css"
 
 const Keypad = ({formula, setFormula, output, setOutput}) => {
   const isMath = (string) => {
@@ -64,7 +65,7 @@ const Keypad = ({formula, setFormula, output, setOutput}) => {
   };
 
   return (
-    <div className="keypad">
+    <div className={ classes.keypad }>
       <Button
         id="clear"
         styleClassesArray={["button__operation"]}

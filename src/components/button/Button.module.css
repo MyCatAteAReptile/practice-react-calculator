@@ -1,9 +1,5 @@
 .button {
-    background-image: -webkit-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
-    background-image:    -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
-    background-image:     -ms-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
-    background-image:      -o-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
-    background-image:         linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
+    background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
     border: none;
     border-radius: .5em;
     box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.2),
@@ -27,12 +23,15 @@
 
     font-size: 1em;
     border-radius: .5em;
+    user-select: none;
 }
+
 .button:hover {
     outline: none;
 }
+
 .button:hover,
-.button:focus {
+.button:focus-visible    {
     box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.2),
                 inset 0 2px 0 hsla(0,0%,100%,.1),
                 inset 0 1.2em 0 hsla(0,0%,100%,.1),
@@ -41,6 +40,7 @@
                 inset 0 0 0 3em hsla(0,0%,100%,.2),
                 0 .25em .25em hsla(0,0%,0%,.05);
 }
+
 .button:active {
     box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.2),
                 inset 0 2px 0 hsla(0,0%,100%,.1),
@@ -55,11 +55,10 @@
 }
 
 .button__digital {
-    background-color: #dadada;
+    background-color: #cfcfcf;
 }
 
 .button__digital[id=zero] {
-    background-color: #dadada;
     grid-column: 1 / 3;
 }
 

@@ -4,10 +4,10 @@ import classes from "./Display.module.css";
 const Display = ({ formula, output }) => {
   return (
     <div>
-      <div className={ [classes.display, classes.display__formula] }>
+      <div className={ [classes.display, classes.display__formula].join(' ') }>
         { formula }
       </div>
-      <div className="display" id="display">
+      <div className={ classes.display } id="display">
         { output }
       </div>
     </div>

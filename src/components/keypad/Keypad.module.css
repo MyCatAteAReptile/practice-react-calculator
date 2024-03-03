@@ -1,0 +1,10 @@
+.keypad {
+    width: 320px;
+    height: 320px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }

@@ -9,15 +9,16 @@
     min-height: 32px;
     padding: 0 4px 6px 4px;
     border: none;
-    user-select: none;
+    user-select: text;
     cursor: default;
     background-color: #000000;
-    color: white;
+    color: #ffffff;
     text-align: end;
   }
   
   .display__formula {
     background-color: #000000;
-    color: orange;
+    color: #ffa600;
     padding: 6px 4px 0 4px;
   }
+  
