@@ -59,6 +59,7 @@ const Keypad = ({formula, setFormula, output, setOutput}) => {
     if (!isFormulaCompleted(formula)) {
       if (isMath(resultFormula)) {
         setFormula(resultFormula + "=");
+        // eslint-disable-next-line
         setOutput(eval(resultFormula).toString());
       }
     }
