@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "../button/Button";
-import classes from "./Keypad.module.css"
+import classes from "./Keypad.module.css";
 
-const Keypad = ({formula, setFormula, output, setOutput}) => {
+const Keypad = ({ formula, setFormula, output, setOutput }) => {
   const isMath = (string) => {
     const matchedCharArray = string.match("[-.=+*/0-9/s]{1,}");
     return matchedCharArray[0].length === string.length;
@@ -16,39 +16,37 @@ const Keypad = ({formula, setFormula, output, setOutput}) => {
   };
 
   const processDigit = (number) => {
-    if (!isFormulaCompleted(formula)) {
+    if (isFormulaCompleted(formula)) {
+      setFormula("");
+      setOutput(number);
+    } else {
       if (output === "0") {
         setOutput(number);
       } else {
         setOutput(output + number);
       }
-    } else {
-      setFormula("");
-      setOutput(number);
     }
   };
 
   const processDecimal = (divider) => {
-    if (!isFormulaCompleted(formula)) {
+    if (isFormulaCompleted(formula)) {
+      setFormula("");
+      setOutput("0.");
+    } else {
       if (output.indexOf(".") === -1) {
         setOutput(output + divider);
       }
-    } else {
-      setFormula("");
-      setOutput("0.");
     }
   };
 
   const processOperation = (operation) => {
-    if (!isFormulaCompleted(formula)) {
+    if (isFormulaCompleted(formula)) {
+      clear();
+    } else {
       setFormula(
-        formula +
-          (output.slice(-1) === "." ? output.slice(0, -1) : output) +
-          operation
+        formula + (output.slice(-1) === "." ? output.slice(0, -1) : output) + operation
       );
       setOutput("0");
-    } else {
-      clear();
     }
   };
 
@@ -65,174 +63,155 @@ const Keypad = ({formula, setFormula, output, setOutput}) => {
     }
   };
 
+  const buttons = [
+    {
+      id: "clear",
+      styleClassesArray: ["button__operation"],
+      value: "AC",
+      onClick: clear
+    },
+    {
+      id: "add",
+      styleClassesArray: ["button__operation"],
+      value: "+",
+      onClick: (e) => {
+        processOperation(e.target.value);
+      }
+    },
+    {
+      id: "subtract",
+      styleClassesArray: ["button__operation"],
+      value: "-",
+      onClick: (e) => {
+        processOperation(e.target.value);
+      }
+    },
+    {
+      id: "one",
+      styleClassesArray: ["button__digital"],
+      value: "1",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "two",
+      styleClassesArray: ["button__digital"],
+      value: "2",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "three",
+      styleClassesArray: ["button__digital"],
+      value: "3",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "multiply",
+      styleClassesArray: ["button__operation"],
+      value: "*",
+      onClick: (e) => {
+        processOperation(e.target.value);
+      }
+    },
+    {
+      id: "four",
+      styleClassesArray: ["button__digital"],
+      value: "4",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "five",
+      styleClassesArray: ["button__digital"],
+      value: "5",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "six",
+      styleClassesArray: ["button__digital"],
+      value: "6",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "divide",
+      styleClassesArray: ["button__operation"],
+      value: "/",
+      onClick: (e) => {
+        processOperation(e.target.value);
+      }
+    },
+    {
+      id: "seven",
+      styleClassesArray: ["button__digital"],
+      value: "7",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "eight",
+      styleClassesArray: ["button__digital"],
+      value: "8",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "nine",
+      styleClassesArray: ["button__digital"],
+      value: "9",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "zero",
+      styleClassesArray: ["button__digital"],
+      value: "0",
+      onClick: (e) => {
+        processDigit(e.target.value);
+      }
+    },
+    {
+      id: "decimal",
+      styleClassesArray: ["button__digital"],
+      value: ".",
+      onClick: (e) => {
+        processDecimal(e.target.value);
+      }
+    },
+    {
+      id: "equals",
+      styleClassesArray: ["button__operation"],
+      value: "=",
+      onClick: (e) => {
+        processFormula(e.target.value);
+      }
+    }
+  ]
+
   return (
-    <div className={ classes.keypad }>
-      <Button
-        id="clear"
-        styleClassesArray={["button__operation"]}
-        value=""
-        onClick={clear}
-      >
-        AC
-      </Button>
-      <Button
-        id="add"
-        value="+"
-        styleClassesArray={["button__operation"]}
-        onClick={(e) => {
-          processOperation(e.target.value);
-        }}
-      >
-        +
-      </Button>
-      <Button
-        id="subtract"
-        value="-"
-        styleClassesArray={["button__operation"]}
-        onClick={(e) => {
-          processOperation(e.target.value);
-        }}
-      >
-        -
-      </Button>
-      <Button
-        id="one"
-        value="1"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        1
-      </Button>
-      <Button
-        id="two"
-        value="2"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        2
-      </Button>
-      <Button
-        id="three"
-        value="3"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        3
-      </Button>
-      <Button
-        id="multiply"
-        value="*"
-        styleClassesArray={["button__operation"]}
-        onClick={(e) => {
-          processOperation(e.target.value);
-        }}
-      >
-        *
-      </Button>
-      <Button
-        id="four"
-        value="4"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        4
-      </Button>
-      <Button
-        id="five"
-        value="5"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        5
-      </Button>
-      <Button
-        id="six"
-        value="6"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        6
-      </Button>
-      <Button
-        id="divide"
-        value="/"
-        styleClassesArray={["button__operation"]}
-        onClick={(e) => {
-          processOperation(e.target.value);
-        }}
-      >
-        /
-      </Button>
-      <Button
-        id="seven"
-        value="7"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        7
-      </Button>
-      <Button
-        id="eight"
-        value="8"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        8
-      </Button>
-      <Button
-        id="nine"
-        value="9"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        9
-      </Button>
-      <Button
-        id="zero"
-        value="0"
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDigit(e.target.value);
-        }}
-      >
-        0
-      </Button>
-      <Button
-        id="decimal"
-        value="."
-        styleClassesArray={["button__digital"]}
-        onClick={(e) => {
-          processDecimal(e.target.value);
-        }}
-      >
-        .
-      </Button>
-      <Button
-        id="equals"
-        value="="
-        styleClassesArray={["button__operation"]}
-        onClick={processFormula}
-      >
-        =
-      </Button>
+    <div className={classes.keypad}>
+      { buttons.map(button => 
+        <Button
+          id={button.id}
+          styleClassesArray={button.styleClassesArray}
+          value={button.value}
+          onClick={button.onClick}
+        >
+          {button.value}
+        </Button>
+      )}
     </div>
   );
 };
