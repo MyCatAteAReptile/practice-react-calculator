@@ -3,72 +3,13 @@ import Button from "../button/Button";
 import classes from "./Keypad.module.css";
 
 const Keypad = ({ formula, setFormula, output, setOutput }) => {
-  const isMath = (string) => {
-    const matchedCharArray = string.match("[-.=+*/0-9/s]{1,}");
-    return matchedCharArray[0].length === string.length;
-  };
-
-  const isFormulaCompleted = (string) => string.slice(-1) === "=";
-
-  const clear = () => {
-    setFormula("");
-    setOutput("0");
-  };
-
-  const processDigit = (number) => {
-    if (isFormulaCompleted(formula)) {
-      setFormula("");
-      setOutput(number);
-    } else {
-      if (output === "0") {
-        setOutput(number);
-      } else {
-        setOutput(output + number);
-      }
-    }
-  };
-
-  const processDecimal = (divider) => {
-    if (isFormulaCompleted(formula)) {
-      setFormula("");
-      setOutput("0.");
-    } else {
-      if (output.indexOf(".") === -1) {
-        setOutput(output + divider);
-      }
-    }
-  };
-
-  const processOperation = (operation) => {
-    if (isFormulaCompleted(formula)) {
-      clear();
-    } else {
-      setFormula(
-        formula + (output.slice(-1) === "." ? output.slice(0, -1) : output) + operation
-      );
-      setOutput("0");
-    }
-  };
-
-  const processFormula = () => {
-    const resultFormula =
-      formula + (output.slice(-1) === "." ? output.slice(0, -1) : output);
-
-    if (!isFormulaCompleted(formula)) {
-      if (isMath(resultFormula)) {
-        setFormula(resultFormula + "=");
-        // eslint-disable-next-line
-        setOutput(eval(resultFormula).toString());
-      }
-    }
-  };
-
-  const buttons = [
+  //можно вынести баттоны в отдельный файл и сделать вместо функций и стиля type
+  const BUTTONS = [
     {
       id: "clear",
       styleClassesArray: ["button__operation"],
       value: "AC",
-      onClick: clear
+      onClick: () => clear()
     },
     {
       id: "add",
@@ -200,9 +141,69 @@ const Keypad = ({ formula, setFormula, output, setOutput }) => {
     }
   ]
 
+  const isMath = (string) => {
+    const matchedCharArray = string.match("[-.=+*/0-9/s]{1,}");
+    return matchedCharArray[0].length === string.length;
+  };
+
+  const isFormulaCompleted = (string) => string.slice(-1) === "=";
+
+  const clear = () => {
+    setFormula("");
+    setOutput("0");
+  };
+
+  const processDigit = (number) => {
+    if (isFormulaCompleted(formula)) {
+      setFormula("");
+      setOutput(number);
+    } else {
+      if (output === "0") {
+        setOutput(number);
+      } else {
+        setOutput(output + number);
+      }
+    }
+  };
+
+  const processDecimal = (divider) => {
+    if (isFormulaCompleted(formula)) {
+      setFormula("");
+      setOutput("0.");
+    } else {
+      if (output.indexOf(".") === -1) {
+        setOutput(output + divider);
+      }
+    }
+  };
+
+  const processOperation = (operation) => {
+    if (isFormulaCompleted(formula)) {
+      clear();
+    } else {
+      setFormula(
+        formula + (output.slice(-1) === "." ? output.slice(0, -1) : output) + operation
+      );
+      setOutput("0");
+    }
+  };
+
+  const processFormula = () => {
+    const resultFormula =
+      formula + (output.slice(-1) === "." ? output.slice(0, -1) : output);
+
+    if (!isFormulaCompleted(formula)) {
+      if (isMath(resultFormula)) {
+        setFormula(resultFormula + "=");
+        // eslint-disable-next-line
+        setOutput(eval(resultFormula).toString());
+      }
+    }
+  };
+
   return (
     <div className={classes.keypad}>
-      { buttons.map(button => 
+      { BUTTONS.map(button => 
         <Button
           id={button.id}
           styleClassesArray={button.styleClassesArray}
