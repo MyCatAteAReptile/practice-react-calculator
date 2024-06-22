@@ -1,9 +1,9 @@
 import React, { Dispatch, MouseEvent } from 'react';
 import Button from '../button/Button';
 import classes from './Keypad.module.css';
-import Buttons from '../../global/buttons';
-import ButtonVariants from '../../global/buttonVariants';
-import { isFormulaCompleted, isMath } from '../../global/utils';
+import Buttons from '../../global/Buttons';
+import ButtonVariants from '../../global/ButtonVariants';
+import CalculatorLogic from '../CalculatorLogic';
 
 interface KeypadProps {
     formula: string;
@@ -13,83 +13,34 @@ interface KeypadProps {
 }
 
 const Keypad = ({ formula, setFormula, output, setOutput }: KeypadProps) => {
-    const clear = () => {
-        setFormula('');
-        setOutput('0');
-    };
-
-    const processOperation = (operation: string) => {
-        if (isFormulaCompleted(formula)) {
-            clear();
-        } else {
-            setFormula(
-                formula +
-                    (output.slice(-1) === '.' ? output.slice(0, -1) : output) +
-                    operation,
-            );
-            setOutput('0');
-        }
-    };
-
-    const processDigit = (number: string) => {
-        if (isFormulaCompleted(formula)) {
-            setFormula('');
-            setOutput(number);
-        } else {
-            if (output === '0') {
-                setOutput(number);
-            } else {
-                setOutput(output + number);
-            }
-        }
-    };
-
-    const processFormula = () => {
-        const resultFormula =
-            formula + (output.slice(-1) === '.' ? output.slice(0, -1) : output);
-
-        if (!isFormulaCompleted(formula)) {
-            if (isMath(resultFormula)) {
-                setFormula(`${resultFormula}=`);
-                // to prevent eval from doing harm used isMath
-                // eslint-disable-next-line
-                setOutput(eval(resultFormula).toString());
-            }
-        }
-    };
-
-    const processDecimal = (divider: string) => {
-        if (isFormulaCompleted(formula)) {
-            setFormula('');
-            setOutput('0.');
-        } else {
-            if (output.indexOf('.') === -1) {
-                setOutput(output + divider);
-            }
-        }
-    };
+    const Operations = new CalculatorLogic(
+        formula,
+        setFormula,
+        output,
+        setOutput,
+    );
 
     const onDigitClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
         const target = e.target as HTMLButtonElement;
-        processDigit(target.value);
+        Operations.processDigit(target.value);
     };
 
     const onOperationClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
         const target = e.target as HTMLButtonElement;
-        processOperation(target.value);
+        Operations.processOperation(target.value);
     };
 
     const onClearClickHandler = () => {
-        clear();
+        Operations.clear();
     };
 
     const onDecimalClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
         const target = e.target as HTMLButtonElement;
-        processDecimal(target.value);
+        Operations.processDecimal(target.value);
     };
 
     const onEqualsClickHandler = () => {
-        processFormula();
+        Operations.processFormula();
     };
 
     const onClickHandlers: {

@@ -1,4 +1,4 @@
-import ButtonVariants from '../../global/buttonVariants';
+import ButtonVariants from '../../global/ButtonVariants';
 
 export default interface IButton {
     id: string;

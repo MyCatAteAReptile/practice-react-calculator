@@ -1,5 +1,5 @@
-import IButton from '../components/types/button';
-import ButtonVariants from './buttonVariants';
+import IButton from '../components/types/IButton';
+import ButtonVariants from './ButtonVariants';
 
 const Buttons: IButton[] = [
     {

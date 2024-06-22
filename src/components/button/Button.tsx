@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 import classes from './Button.module.css';
-import ButtonVariants from '../../global/buttonVariants';
+import ButtonVariants from '../../global/ButtonVariants';
 
 const buttonsClasses: { [key in ButtonVariants]: string } = {
     digit: `${classes.button} ${classes.button__digit}`,
