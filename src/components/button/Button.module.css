@@ -31,7 +31,7 @@
 }
 
 .button:hover,
-.button:focus-visible    {
+.button:focus    {
     box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.2),
                 inset 0 2px 0 hsla(0,0%,100%,.1),
                 inset 0 1.2em 0 hsla(0,0%,100%,.1),
@@ -54,11 +54,11 @@
     padding-bottom: .5em;
 }
 
-.button__digital {
+.button__digit {
     background-color: #cfcfcf;
 }
 
-.button__digital[id=zero] {
+.button__digit[id=zero] {
     grid-column: 1 / 3;
 }
 
