@@ -1,8 +1,8 @@
 import React, { Dispatch, MouseEvent } from 'react';
 import Button from '../button/Button';
 import classes from './Keypad.module.css';
-import Buttons from '../../global/Buttons';
-import ButtonVariants from '../../global/ButtonVariants';
+import Buttons from '../../global/buttons';
+import ButtonVariants from '../../global/buttonVariants';
 import CalculatorLogic from '../CalculatorLogic';
 
 interface KeypadProps {
