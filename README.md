@@ -1,3 +1,4 @@
-Practicing with REACT: Calculator
-- REACT (create-react-app)
-- CSS modules
+Онлайн-калькулятор
+- React
+- TypeScript
+- CSS Modules
